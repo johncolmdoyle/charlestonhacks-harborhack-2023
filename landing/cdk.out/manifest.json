@@ -1,0 +1,130 @@
+{
+  "version": "34.0.0",
+  "artifacts": {
+    "LandingStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "LandingStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "LandingStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://435481488684/us-east-1",
+      "properties": {
+        "templateFile": "LandingStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::435481488684:role/cdk-hnb659fds-deploy-role-435481488684-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::435481488684:role/cdk-hnb659fds-cfn-exec-role-435481488684-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-435481488684-us-east-1/4c64d59f4c4340381f344d5f07cb340d0126fa9bc586ed91a20653e2eb3e63a8.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "LandingStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::435481488684:role/cdk-hnb659fds-lookup-role-435481488684-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "LandingStack.assets"
+      ],
+      "metadata": {
+        "/LandingStack/WebsiteBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebsiteBucket75C24D94"
+          }
+        ],
+        "/LandingStack/Deployment/AwsCliLayer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentAwsCliLayerB82B26A3"
+          }
+        ],
+        "/LandingStack/Deployment/CustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentCustomResource47E8B2E6"
+          }
+        ],
+        "/LandingStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+          }
+        ],
+        "/LandingStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF"
+          }
+        ],
+        "/LandingStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536"
+          }
+        ],
+        "/LandingStack/WebsiteCertificate/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebsiteCertificateEEE1FA4C"
+          }
+        ],
+        "/LandingStack/WebsiteDistribution/CFDistribution": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WebsiteDistributionCFDistribution70408E7F"
+          }
+        ],
+        "/LandingStack/AliasRecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AliasRecord851000D2"
+          }
+        ],
+        "/LandingStack/AWSCloudFrontPartitionHostedZoneIdMap": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWSCloudFrontPartitionHostedZoneIdMap"
+          }
+        ],
+        "/LandingStack/WwwAliasRecord/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WwwAliasRecord1B442697"
+          }
+        ],
+        "/LandingStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/LandingStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/LandingStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "LandingStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
