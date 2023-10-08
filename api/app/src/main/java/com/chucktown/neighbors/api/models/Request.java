@@ -29,7 +29,7 @@ public class Request {
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client requestor;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "request_type_id", referencedColumnName = "id")
     private RequestType requestType;
 
