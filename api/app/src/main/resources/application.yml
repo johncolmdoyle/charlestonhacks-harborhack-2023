@@ -10,19 +10,19 @@ server:
   port: ${PORT}
 
 spring:
+  datasource:
+    url: jdbc:postgresql://database-1.cdsdyncjkfak.us-east-1.rds.amazonaws.com:5432/app
+    username: postgres
+    password: (i2~w%tnS2]kVhc51ooN6KWMJR|C
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
   mvc:
     throw-exception-if-no-handler-found: true
   web:
     resources:
       add-mappings: false
-  datasource:
-    url: jdbc:postgresql://database-1.cdsdyncjkfak.us-east-1.rds.amazonaws.com:5432/app
-    username: postgres
-    password: (i2~w%tnS2]kVhc51ooN6KWMJR|C
-  jpa:
-    hibernate:
-      ddl-auto: update
-
 okta:
   oauth2:
     issuer: ${OKTA_OAUTH2_ISSUER}

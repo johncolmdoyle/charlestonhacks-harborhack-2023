@@ -41,6 +41,11 @@ public class ClientController {
     }
 
 
+    @GetMapping(value = {"/me", "/me/"})
+    public Client getCurrentClient(Principal principal) {
+        return clientService.getClientByAuth0Id(principal.getName());
+    }
+
     @GetMapping(value = {"/{id}", "/{id}/"})
     public Client getClient(@PathVariable("id") Long id) {
         log.info("Entered getClient");

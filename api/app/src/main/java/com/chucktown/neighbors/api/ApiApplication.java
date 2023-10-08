@@ -3,13 +3,16 @@ package com.chucktown.neighbors.api;
 import static java.util.Arrays.stream;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
+@EnableAutoConfiguration
 @SpringBootApplication
 @ConfigurationPropertiesScan
 public class ApiApplication {
