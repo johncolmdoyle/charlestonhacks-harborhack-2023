@@ -6,6 +6,7 @@ import * as ecs_patterns from "aws-cdk-lib/aws-ecs-patterns";
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as aws_ecr from 'aws-cdk-lib/aws-ecr';
+import * as iam from 'aws-cdk-lib/aws-iam';
 
 export class CdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -32,6 +33,28 @@ export class CdkStack extends cdk.Stack {
       validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
+    const sesPolicy = iam.PolicyDocument.fromJson(
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "ses:*",
+                ],
+                "Resource": "*"
+            }
+        ]
+    }
+  );
+
+  const sesRole = new iam.Role(this, 'SesRole', {
+    assumedBy: new iam.ServicePrincipal('ecs-tasks.amazonaws.com'),
+    inlinePolicies: {
+        'SESAccessPolicy': sesPolicy
+    }
+});
+
     const ecrRepo = aws_ecr.Repository.fromRepositoryName(this, 'Repo', 'api');
 
     const springbootApp = new ecs_patterns.ApplicationLoadBalancedFargateService(this, 'ApiService', {
@@ -41,6 +64,7 @@ export class CdkStack extends cdk.Stack {
       memoryLimitMiB: 512,
       taskImageOptions: {
         image: ecs.ContainerImage.fromEcrRepository(ecrRepo),
+        executionRole: sesRole,
         containerName: 'api',
         containerPort: 6060,
         environment: {
@@ -48,7 +72,7 @@ export class CdkStack extends cdk.Stack {
           'CLIENT_ORIGIN_URL': 'https://app.chucktownneighbors.com',
           'OKTA_OAUTH2_ISSUER': 'https://dev-aowob8abt04txyv1.us.auth0.com/',
           'OKTA_OAUTH2_AUDIENCE': 'https://api.chucktownneighbors.com'
-        }
+        },
       },
       runtimePlatform: {
         cpuArchitecture: ecs.CpuArchitecture.ARM64,

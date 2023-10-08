@@ -1,0 +1,9 @@
+{
+  "Source":"Neighbors <callout@chucktownneighbors.com>",
+  "Template": "RequestTemplate",
+  "ConfigurationSetName": "Default",
+  "Destination": {
+    "ToAddresses": ["test@chucktownneighbors.com"]
+  },
+  "TemplateData": "{ \"name\":\"John\"}"
+}
